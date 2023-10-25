@@ -1,0 +1,40 @@
+.text_shadow {
+  text-shadow: 2px 2px 10px rgba(114, 111, 111, 0.796);
+}
+
+.text_shadow_1 {
+  text-shadow: 2px 2px 15px rgba(114, 111, 111, 0.796);
+}
+
+.formContainer {
+  height: calc(100vh - 50px);
+  width: 100vw;
+}
+
+.formContainer::before {
+  content: "";
+  width: 15rem;
+  height: 15rem;
+  background: purple;
+  position: absolute;
+  bottom: 0;
+  left: -5rem;
+  border-radius: 100%;
+  backdrop-filter: blur(50px);
+  filter: blur(90px);
+  opacity: 0.7;
+}
+
+form {
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  width: 50vw;
+  height: 60vh;
+  padding: 48px;
+  overflow: hidden;
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  background: rgba(225, 225, 225, 0.1);
+
+  border-top: 1px solid rgba(225, 225, 225, 0.5);
+  border-left: 1px solid rgba(225, 225, 225, 0.5);
+}

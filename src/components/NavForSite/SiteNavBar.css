@@ -1,0 +1,19 @@
+.navbar-container {
+  box-shadow: 20px 20px 50px rgba(66, 65, 65, 0.2);
+  /* background: rgba(225, 225, 225, 0.1); */
+
+  /* border-bottom: 1px solid rgba(225, 225, 225, 0.5); */
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+
+
+
+
+.logo,
+.link {
+  text-shadow: 2px 2px 20px rgba(114, 111, 111, 0.796);
+  /* height: 50px; */
+}
