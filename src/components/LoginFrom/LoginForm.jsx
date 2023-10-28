@@ -2,7 +2,10 @@ import Arrow from "./arrow2.png";
 import "./LoginForm.css";
 import { useContext, useRef } from "react";
 import { loginCall } from "../../apiCalls";
-import {AuthContext} from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
+import LinearProgress from "@mui/material/LinearProgress";
+
+// import CircularProgress from '@mui/material/CircularProgress';
 
 function LoginForm() {
   const email = useRef();
@@ -18,15 +21,15 @@ function LoginForm() {
       dispatch
     );
   };
-  
+
   console.log(user);
 
   return (
     <div>
       <div className="formContainer flex justify-center items-center p-10 gap-6 bg-gray-100 before:animate-pulse duration-1000">
-        <div className="TalkTime  w-1/2">
+        <div className="VibeVerse  w-1/2">
           <h1 className="text_shadow  text-5xl font-semibold text-gray-800">
-            Talk Time
+            VibeVerse
           </h1>
           <hr className="mb-8.6 mt-3 " />
           <p className="text-gray-800 text-lg">
@@ -39,7 +42,7 @@ function LoginForm() {
             <span className="text_span uppercase">
               Don't have account? Sign up now
             </span>
-            <a href="/register">
+            <a href="/signup">
               <img
                 src={Arrow}
                 className="w-8 h-8 rounded-full hover:cursor-pointer hover:transform hover:translate-x-2 duration-200"
@@ -60,10 +63,10 @@ function LoginForm() {
               <div className="main_form   ">
                 <div className="brand flex justify-center ">
                   <a
-                    href="www.talktime.com"
+                    href="www.vibeverse.com"
                     className="font-semibold text-3xl text-gray-700 text-shadow tracking-wider"
                   >
-                    Talk Time
+                    VibeVerse
                   </a>
                 </div>
                 <div className="form_item my-7.6  w-full">
@@ -83,22 +86,29 @@ function LoginForm() {
                     type="password"
                     name="password"
                     minLength="6"
+                    required
                     placeholder="Password"
                     className="pl-3 bg-transparent text-gray-900  outline-none border-b-2 placeholder-gray-700 w-full"
                   />
                 </div>
               </div>
 
-              {/* submit button */}
-              <div className="form_submit">
-                <div className="loading"></div>
+              {/* login button */}
+              <div className="form_submit flex justify-center items-center flex-col gap-3 ">
                 <button
                   type="submit"
-                  onClick={handleLogin}
-                  className="btn bg-emerald-200 px-5 rounded-md text-emerald-600 font-semibold text_shadow_1 hover:bg-emerald-300 hover:text-emerald-700 duration-500"
+                  onClick={handleLogin} disabled={isFetching}
+                  className="loginBtn bg-emerald-200  rounded-md w-3/4 text-emerald-600 font-semibold text_shadow_1 hover:bg-emerald-300 hover:text-emerald-700 duration-500 "
                 >
-                  Login
+                  {isFetching ? (
+                    <LinearProgress color="success" className="w-full"></LinearProgress>
+                  ) : (
+                    "Log In"
+                  )}
                 </button>
+                  
+                  <span className="text-sm text-red-500 hover:text-red-700"><a href="forgetPassword">Forgot Password?</a></span>
+
               </div>
             </div>
           </form>

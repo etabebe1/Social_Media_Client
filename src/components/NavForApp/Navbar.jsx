@@ -23,7 +23,7 @@ function NavBar() {
               href="/"
               className="logo font-bold text-2xl text-gray-700 tracking-wider cursor-pointer"
             >
-              Talk Time
+              VibeVerse
             </a>
           </div>
           <div className="search_bar flex items-center bg-white rounded-md w-14">

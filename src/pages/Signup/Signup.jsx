@@ -1,12 +1,12 @@
 import SiteNavBar from "../../components/NavForSite/SiteNavBar";
-import RegisterForm from "../../components/RegisterForm/RegisterForm";
+import Signup from "../../components/SignupForm/SignupForm";
 import Footer from "../../components/Footer/Footer";
 
 function Register() {
   return (
     <div>
       <SiteNavBar></SiteNavBar>
-      <RegisterForm></RegisterForm>
+      <Signup></Signup>
       <Footer></Footer>
     </div>
   );

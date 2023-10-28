@@ -1,24 +1,38 @@
-import { Link } from "react-router-dom";
+import { React, useRef, useContext } from "react";
 import Arrow from "./arrow2.png";
-import "./RegisterForm.css";
+import "./Signup.css";
+import { AuthContext } from "../../context/AuthContext";
+import LinearProgress from "@mui/material/LinearProgress";
 
 function RegisterForm() {
+  const username = useRef();
+  const email = useRef();
+  const password = useRef();
+  const confirmPassword = useRef();
+
+  const { user, isFetching, error, dispatch } = useContext(AuthContext);
+
+  const handleSignup = (evt) => {
+    evt.preventDefault();
+  };
+
   return (
     <div>
       <div className="formContainer flex justify-center items-center p-10 gap-6 bg-gray-100 before:animate-pulse duration-1000">
-        <div className="TalkTime  w-1/2">
+        <div className="VibeVerse  w-1/2">
           <h1 className="text_shadow  text-5xl font-semibold text-gray-800">
-            Talk Time
+            VibeVerse
           </h1>
           <hr className="mb-8.6 mt-3 " />
           <p className="text-gray-800 text-lg">
-            Welcome to our revolutionary social media platform! Join a dynamic
-            community of individual who are passionate about connecting, sharing
-            and inspiring. With our cutting-edge feature and intuitive
-            interface, express yourself has never been easier.
+            Join our vibrant community and connect with friends, family, and
+            like-minded individuals from all around the world. Share your
+            thoughts, experiences, and moments with ease. Discover new
+            interests, engage in meaningful conversations, and stay updated with
+            the latest trends.
           </p>
           <div className="sign-up flex my-4  items-center gap-3">
-            <span className="text_span uppercase">
+            <span className="text_span uppercase ">
               Already have an account? Login in
             </span>
             <a href="/Login">
@@ -41,17 +55,19 @@ function RegisterForm() {
               <div className="main_form   ">
                 <div className="brand flex justify-center ">
                   <a
-                    href="www.talktime.com"
+                    href="www.vibeverse.com"
                     className="font-semibold text-3xl text-gray-700 text-shadow tracking-wider"
                   >
-                    Talk Time
+                    Sign Up
                   </a>
                 </div>
                 <div className="form_item my-7.6  w-full">
                   <input
                     type="text"
                     name="username"
+                    required
                     placeholder="Username"
+                    ref={username}
                     min="3"
                     className="pl-3 bg-transparent text-gray-900  outline-none border-b-2 placeholder-gray-700 w-full"
                   />
@@ -60,8 +76,9 @@ function RegisterForm() {
                   <input
                     type="text"
                     name="email"
+                    required
                     placeholder="Email"
-                    min="3"
+                    ref={email}
                     className="pl-3 bg-transparent text-gray-900  outline-none border-b-2 placeholder-gray-700 w-full"
                   />
                 </div>
@@ -69,7 +86,10 @@ function RegisterForm() {
                   <input
                     type="password"
                     name="password"
+                    required
+                    minLength="6"
                     placeholder="Password"
+                    ref={password}
                     className="pl-3 bg-transparent text-gray-900  outline-none border-b-2 placeholder-gray-700 w-full"
                   />
                 </div>
@@ -77,7 +97,10 @@ function RegisterForm() {
                   <input
                     type="password"
                     name="password"
+                    required
+                    minLength="6"
                     placeholder="Confirm Password"
+                    ref={confirmPassword}
                     className="pl-3 bg-transparent text-gray-900  outline-none border-b-2 placeholder-gray-700 w-full"
                   />
                 </div>
@@ -89,6 +112,7 @@ function RegisterForm() {
                 <button
                   className="btn bg-orange-200 px-5 rounded-md text-orange-600 font-semibold text_shadow_1 hover:bg-orange-300 hover:text-orange-700 duration-500"
                   type="submit"
+                  onClick={handleSignup}
                 >
                   Sign Up
                 </button>

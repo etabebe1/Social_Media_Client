@@ -38,3 +38,7 @@ form {
   border-top: 1px solid rgba(225, 225, 225, 0.5);
   border-left: 1px solid rgba(225, 225, 225, 0.5);
 }
+
+.loginBtn:disabled {
+  cursor: not-allowed;
+}

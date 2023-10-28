@@ -16,7 +16,7 @@ function Footer() {
           <div className="navLinks text-center">
             <h1 className="text-xl font-semibold mb-4">Useful Links</h1>
             <div className="flex flex-col gap-3">
-              <a className="text-sm text-gray-800" href="www.talktime.com">
+              <a className="text-sm text-gray-800" href="www.vibeverse.com">
                 Home
               </a>
               <a className="text-sm text-gray-800" href="testimonials">
@@ -84,7 +84,7 @@ function Footer() {
         <hr className="border-1 border-purple-300 mx-10 mt-6 mb-3 " />
         <div className="lower">
           <p className="text-sm text-center text-gray-800 pb-4">
-            &copy; Reserved 2023 Talk Time. All rights reserved
+            &copy; Reserved 2023 VibeVerse. All rights reserved
           </p>
         </div>
       </div>

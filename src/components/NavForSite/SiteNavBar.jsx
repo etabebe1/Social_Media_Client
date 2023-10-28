@@ -11,10 +11,10 @@ function SiteNavBar() {
     <div className="navbar-container h-9.1 w-full flex   justify-around items-center bg-gray-100">
       <section className="logo-container">
         <a
-          href="www.talktime.com"
+          href="www.vibeverse.com"
           className="logo text-3xl font-semibold text-gray-700"
         >
-          Talk Time
+          VibeVerse
         </a>
       </section>
 

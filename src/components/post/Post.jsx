@@ -7,7 +7,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-import {format} from "timeago.js";
+// import {format} from "timeago.js";
 // import { Link } from "react-router-dom";
 
 function Post({ post }) {
@@ -62,7 +62,7 @@ function Post({ post }) {
             <div className=" text-gray-800 font-semibold">{user.username}</div>
           </span>
           <p className="time-display text-xs ">
-            <span>{format(post.createdAt)}</span>
+            <span>{post.createdAt}</span>
           </p>
         </div>
         <div className="vertical-dotes">
