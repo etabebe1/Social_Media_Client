@@ -1,19 +1,46 @@
-import { React, useRef, useContext } from "react";
+import { React, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import Arrow from "./arrow2.png";
 import "./Signup.css";
-import { AuthContext } from "../../context/AuthContext";
-import LinearProgress from "@mui/material/LinearProgress";
+
+// import { AuthContext } from "../../context/AuthContext";
+// import LinearProgress from "@mui/material/LinearProgress";
+
+import axios from "axios";
 
 function RegisterForm() {
   const username = useRef();
   const email = useRef();
   const password = useRef();
   const confirmPassword = useRef();
+  // const history = useHistory();
 
-  const { user, isFetching, error, dispatch } = useContext(AuthContext);
-
-  const handleSignup = (evt) => {
+  const handleSignup = async (evt) => {
     evt.preventDefault();
+    // checking for valid password and creating userData --> Object
+    if (password.current.value !== confirmPassword.current.value) {
+      password.current.setCustomValidity("Password doesn't match!");
+    } else {
+      const userData = {
+        username: username.current.value,
+        email: email.current.value,
+        password: password.current.value,
+      };
+      // console.log(userData);
+
+      try {
+        // making a post request to register a user using axios
+         await axios.post(
+          "http://localhost:8800/api/authentication/register",
+          userData
+        );
+
+        window.location.href = "/login"
+        // history.push("/login");
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -50,7 +77,10 @@ function RegisterForm() {
           <div className="bg-pink-500 w-14 h-14 rounded-full absolute top-13 lg:right-13 md:right-12 mix-blend-multiply blur-xl opacity-30 animate-blob animation-delay-5000"></div>
 
           {/* From here */}
-          <form className="dark:bg-blackMore flex justify-center items-center">
+          <form
+            className="dark:bg-blackMore flex justify-center items-center"
+            onSubmit={handleSignup}
+          >
             <div className="formItemAll flex flex-col gap-1  w-1/2">
               <div className="main_form   ">
                 <div className="brand flex justify-center ">
@@ -63,7 +93,6 @@ function RegisterForm() {
                 </div>
                 <div className="form_item my-7.6  w-full">
                   <input
-                    type="text"
                     name="username"
                     required
                     placeholder="Username"
@@ -112,7 +141,6 @@ function RegisterForm() {
                 <button
                   className="btn bg-orange-200 px-5 rounded-md text-orange-600 font-semibold text_shadow_1 hover:bg-orange-300 hover:text-orange-700 duration-500"
                   type="submit"
-                  onClick={handleSignup}
                 >
                   Sign Up
                 </button>

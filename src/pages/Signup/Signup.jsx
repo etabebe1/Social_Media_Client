@@ -2,7 +2,7 @@ import SiteNavBar from "../../components/NavForSite/SiteNavBar";
 import Signup from "../../components/SignupForm/SignupForm";
 import Footer from "../../components/Footer/Footer";
 
-function Register() {
+function SignupUser() {
   return (
     <div>
       <SiteNavBar></SiteNavBar>
@@ -12,4 +12,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default SignupUser;

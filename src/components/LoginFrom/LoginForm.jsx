@@ -22,7 +22,7 @@ function LoginForm() {
     );
   };
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div>
@@ -58,7 +58,10 @@ function LoginForm() {
 
           {/* from here */}
 
-          <form className="dark:bg-blackMore flex justify-center items-center">
+          <form
+            className="dark:bg-blackMore flex justify-center items-center"
+            onSubmit={handleLogin}
+          >
             <div className="formItemAll flex flex-col gap-1  w-1/2">
               <div className="main_form   ">
                 <div className="brand flex justify-center ">
@@ -77,18 +80,17 @@ function LoginForm() {
                     placeholder="Email"
                     minLength="3"
                     required
-                    className="pl-3 bg-transparent text-gray-900  outline-none border-b-2 placeholder-gray-700 w-full focus:bg-transparent focus:"
+                    className="pl-3 text-gray-900  outline-none border-b-2 placeholder-gray-700 w-full "
                   />
                 </div>
                 <div className="form_item my-7.6  ">
                   <input
+                    required
+                    minLength="6"
                     ref={password}
                     type="password"
-                    name="password"
-                    minLength="6"
-                    required
                     placeholder="Password"
-                    className="pl-3 bg-transparent text-gray-900  outline-none border-b-2 placeholder-gray-700 w-full"
+                    className="pl-3  text-gray-900  outline-none border-b-2 placeholder-gray-700 w-full "
                   />
                 </div>
               </div>
@@ -97,18 +99,22 @@ function LoginForm() {
               <div className="form_submit flex justify-center items-center flex-col gap-3 ">
                 <button
                   type="submit"
-                  onClick={handleLogin} disabled={isFetching}
+                  disabled={isFetching}
                   className="loginBtn bg-emerald-200  rounded-md w-3/4 text-emerald-600 font-semibold text_shadow_1 hover:bg-emerald-300 hover:text-emerald-700 duration-500 "
                 >
                   {isFetching ? (
-                    <LinearProgress color="success" className="w-full"></LinearProgress>
+                    <LinearProgress
+                      color="success"
+                      className="w-full"
+                    ></LinearProgress>
                   ) : (
                     "Log In"
                   )}
                 </button>
-                  
-                  <span className="text-sm text-red-500 hover:text-red-700"><a href="forgetPassword">Forgot Password?</a></span>
 
+                <span className="text-sm text-red-500 hover:text-red-700">
+                  <a href="forgetPassword">Forgot Password?</a>
+                </span>
               </div>
             </div>
           </form>
