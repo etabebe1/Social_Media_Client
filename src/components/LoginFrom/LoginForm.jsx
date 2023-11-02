@@ -11,18 +11,18 @@ function LoginForm() {
   const email = useRef();
   const password = useRef();
 
-  const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const {  isFetching, error, dispatch } = useContext(AuthContext);
 
   const handleLogin = (evt) => {
     evt.preventDefault();
+
 
     loginCall(
       { email: email.current.value, password: password.current.value },
       dispatch
     );
-  };
 
-  // console.log(user);
+  };
 
   return (
     <div>

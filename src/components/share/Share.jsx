@@ -39,7 +39,7 @@ function Share() {
             <span className="text-gray-800 font-semibold text-sm">Location</span>
           </li>
           <li className="info_item flex items-center">
-            <EmojiEmotionsIcon className="mr-2 text-yellow-600" />
+            <EmojiEmotionsIcon className="mr-2 text-goldenrod" />
             <span className="text-gray-800 font-semibold text-sm">Feelings</span>
           </li>
         </ul>

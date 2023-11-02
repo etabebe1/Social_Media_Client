@@ -1,6 +1,3 @@
-// import image from "./124.jpg";
-// import profileImage from "./image.jpg";
-
 function UserProfile({ currentUser }) {
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 

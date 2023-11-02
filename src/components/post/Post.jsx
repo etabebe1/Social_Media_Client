@@ -1,6 +1,6 @@
 // importing useful Hooks
 import { React, useState, useEffect } from "react";
-
+import axios from "axios";
 import "./Post.css";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -18,19 +18,12 @@ function Post({ post }) {
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
-    const TIMELINE_URL = `http://localhost:8800/api/users/${post.userID}`;
+    // const TIMELINE_URL = `http://localhost:8800/api/users/${post.userID}`;
+    const TIMELINE_URL = `http://localhost:8800/api/users?userID=${post.userID}`;
 
     const fetchPosts = async () => {
-      await fetch(TIMELINE_URL)
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          setUser(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      const response = await axios.get(TIMELINE_URL);
+      setUser(response.data);
     };
 
     fetchPosts();
@@ -46,11 +39,12 @@ function Post({ post }) {
     }
   };
 
+
   return (
     <div className="Post_Container my-8.6 px-3 py-4 mx-4 rounded-xl text-gray-900">
       <div className="top flex justify-between items-center">
         <div className="top-left flex items-center gap-3 mb-6">
-          <a href={`profile/${user.username}`}>
+          <a href={`/profile/${user.username}`}>
             <img
               src={user.profile || PublicFolder + "PersonNoAvatar/person-4.svg"}
               className="w-8 h-8 rounded-full object-cover bg-gray-200 p-1"

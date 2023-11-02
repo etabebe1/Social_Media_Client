@@ -1,11 +1,12 @@
 function CloseFriends({ user }) {
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
+// console.log(user)
 
   return (
     <div>
       <li className="friend flex items-center gap-5">
         <img
-          src={PublicFolder + user.photo}
+          src={PublicFolder + user.profile}
           className="w-8.6 h-8.6 rounded-full"
           alt=""
         />

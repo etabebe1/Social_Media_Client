@@ -7,7 +7,7 @@ import "./Home.css";
 
 function Home() {
   return (
-    <div>
+    <>
       <NavBar />
       <div className="flex gap-1">
         <SideBar />
@@ -16,7 +16,7 @@ function Home() {
           <Right />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

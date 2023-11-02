@@ -1,49 +1,72 @@
 import { React, useState, useEffect } from "react";
 import { useParams } from "react-router";
-
+import axios from "axios";
 import NavBar from "../../components/NavForApp/Navbar";
 import SideBar from "../../components/sideBar/SideBar";
 import Feeds from "../../components/feed/Feed";
 import Right from "../../components/rightBar/RightSide";
-import UserProfile from "../../components/CurrentUserProfile/UserProfile";
+// import UserProfile from "../../components/CurrentUserProfile/UserProfile";
 
 import "./ProfilePage.css";
 
 function Profile() {
   const [user, setUser] = useState({});
+  const parameter = useParams()
 
-  const username = useParams().username;
+  const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
-    // here PROFILE_URL end-point is used for test, ASA the login system established for the app, we gonna use CONTEXT API to get username || userID for our user
-    const PROFILE_URL = `http://localhost:8800/api/users?username=${username}`;
+    /*// TODO: here PROFILE_URL end-point is used for test, ASA the login system established for the app, we gonna use CONTEXT API to get username || userID for our user//*/
+    const PROFILE_URL = `http://localhost:8800/api/users?username=${parameter}`;
 
     const fetchUser = async () => {
-      await fetch(PROFILE_URL)
-        .then((resp) => {
-          return resp.json();
-        })
-        .then((data) => {
-          setUser(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      const response = await axios.get(PROFILE_URL);
+      setUser(response.data);
     };
     fetchUser();
-  }, [username]);
+  }, []);
 
   // Here we gonna apply/use the process.env for the <UserProfile></UserProfile> and <Right></Right> components respectively as the former contains ((profile)) and ((cover image)) && latter contains ((User-Friends)) rendered from ProfileRightBar--> function
 
   return (
     <div className="effect_filter">
-      <NavBar />
+      <NavBar></NavBar>
       <div className="profile flex">
         <SideBar />
-        <div className="profile-container ">
-          <UserProfile currentUser={user} />
+        <div className="profile-container">
+          {/*// TODO: UserProfile component will be rendered separately by passing the user={user} prop //*/}
+          {/*// Here we may or may not it will be in consideration to it's necessity //*/}
+
+          {/* <UserProfile user={user} /> */}
+          <div className="profile-container-top ">
+            <div className="cover-picture ">
+              <img
+                src={
+                  user.coverPicture ||
+                  PublicFolder + "PersonNoAvatar/default-cover.png"
+                }
+                className="h-13 w-full object-cover"
+                alt=""
+              />
+              <div className="profile-picture flex flex-col justify-center items-center gap-5 -mt-11 ">
+                <img
+                  src={
+                    user.profile || PublicFolder + "PersonNoAvatar/person-4.svg"
+                  }
+                  className="h-12 w-12 rounded-full border-4 border-white bg-gray-200 p-2"
+                  alt=""
+                />
+
+                <div className="flex flex-col justify-center items-center gap-3 text-gray-800">
+                  <h1 className="font-bold text-3xl ">{user.username}</h1>
+                  <p>{user.description}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="profile-container-bottom flex">
-            <Feeds username={username} />
+            <Feeds username={user.username} />
             <Right User={user} />
           </div>
         </div>

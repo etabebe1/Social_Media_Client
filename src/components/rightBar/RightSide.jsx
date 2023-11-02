@@ -10,7 +10,7 @@ import "./RightSide.css";
 
 function RightSide({ User }) {
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
-  const [onlineFriends, setOnlineFriends] = useState({});
+  // const [onlineFriends, setOnlineFriends] = useState({});
 
   const HomeRightBar = () => {
     return (
@@ -63,7 +63,6 @@ function RightSide({ User }) {
 
     return (
       <>
-        <div className="">
           <div className="user-info mb-7">
             <h1 className="text-xl font-semibold mb-4">User Information</h1>
 
@@ -140,7 +139,6 @@ function RightSide({ User }) {
               </li>
             </ul>
           </div>
-        </div>
       </>
     );
   };

@@ -1,5 +1,5 @@
 import { React, useRef } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import Arrow from "./arrow2.png";
 import "./Signup.css";
 
@@ -35,6 +35,7 @@ function RegisterForm() {
           userData
         );
 
+        // here tried for useHistory() -- hook but cannot get desired result
         window.location.href = "/login"
         // history.push("/login");
       } catch (error) {

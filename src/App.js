@@ -1,12 +1,12 @@
 import { React, useContext } from "react";
 
-// importing React Router
 
 import Home from "./pages/Home/HomePage";
 import Profile from "./pages/Profile/ProfilePage";
 import Login from "./pages/Login/LoginPage";
 import Signup from "./pages/Signup/Signup";
 
+// importing React Router form react-router-dom
 import {
   BrowserRouter as Router,
   Route,

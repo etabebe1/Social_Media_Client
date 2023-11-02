@@ -14,6 +14,7 @@ export const loginCall = async (userCredentials, dispatch) => {
   }
 };
 
+//* Not necessarily */
 // export const signupCall = async (userProvidedCredentials, dispatch) => {
 //   dispatch({ type: "SIGNUP_START" });
 
