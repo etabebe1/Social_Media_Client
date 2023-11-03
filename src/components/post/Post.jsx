@@ -1,11 +1,12 @@
 // importing useful Hooks
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./Post.css";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { AuthContext } from "../../context/AuthContext";
 
 // import {format} from "timeago.js";
 // import { Link } from "react-router-dom";
@@ -14,11 +15,21 @@ function Post({ post }) {
   const [likes, setLikes] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
+  const { user: currentUser } = useContext(AuthContext);
 
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
+  // console.log(post.likes.includes(currentUser._id));
+  // console.log(currentUser);
+  // console.log(post)
+
+  ///* updating the value of isLiked state based on the info in the post likes Array //*/
+  // hence we're using useEffect hook to do that.
   useEffect(() => {
-    // const TIMELINE_URL = `http://localhost:8800/api/users/${post.userID}`;
+    setIsLiked(post.likes.includes(currentUser._id));
+  }, [post.likes, currentUser._id]);
+
+  useEffect(() => {
     const TIMELINE_URL = `http://localhost:8800/api/users?userID=${post.userID}`;
 
     const fetchPosts = async () => {
@@ -29,7 +40,13 @@ function Post({ post }) {
     fetchPosts();
   }, [post.userID]);
 
-  const likeHandlerFn = () => {
+  const likeHandlerFn = async () => {
+    try {
+      await axios.put(`http://localhost:8800/api/posts/${post._id}/like`, {
+        userID: currentUser._id,
+      });
+    } catch (error) {}
+
     if (!isLiked) {
       setIsLiked(true);
       setLikes(likes + 1);
@@ -39,14 +56,17 @@ function Post({ post }) {
     }
   };
 
-
   return (
     <div className="Post_Container my-8.6 px-3 py-4 mx-4 rounded-xl text-gray-900">
       <div className="top flex justify-between items-center">
         <div className="top-left flex items-center gap-3 mb-6">
           <a href={`/profile/${user.username}`}>
             <img
-              src={user.profile || PublicFolder + "PersonNoAvatar/person-4.svg"}
+              src={
+                user.profile
+                  ? PublicFolder + user.profile
+                  : PublicFolder + "PersonNoAvatar/person-4.svg"
+              }
               className="w-8 h-8 rounded-full object-cover bg-gray-200 p-1"
               alt=""
             />

@@ -1,6 +1,6 @@
 // import { Link } from "react-router-dom";
 import "./Navbar.css";
-import image from "./image.jpg";
+// import image from "./image.jpg";
 import SearchIcon from "@mui/icons-material/Search";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 // import LightModeIcon from "@mui/icons-material/LightMode";
@@ -11,8 +11,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 function NavBar() {
-  const { user } = useContext(AuthContext);
-  // console.log(user)
+  const user = useContext(AuthContext).user;
+  // console.log(user.username);
 
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -86,9 +86,13 @@ function NavBar() {
             {/*// TODO: here the end point for user profile will be updated based on the credentials we got from context API //*/}
             {/*In this case (Jeremiah A. or whatever user is logged in.)*/}
 
-            <a href={"profile/Jeremiah A."}>
+            <a href={`/profile/${user.username}`}>
               <img
-                src={image}
+                src={
+                  user.profile
+                    ? PublicFolder + user.profile
+                    : PublicFolder + "PersonNoAvatar/person-4.svg"
+                }
                 className="cursor-pointer w-8 h-8 rounded-full object-cover bg-gray-200 p-1"
                 alt=""
               />

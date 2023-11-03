@@ -12,7 +12,7 @@ import "./ProfilePage.css";
 function Profile() {
   const [user, setUser] = useState({});
   const { username } = useParams();
-  // console.log(user);
+  console.log(user.coverPicture);
 
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -43,8 +43,9 @@ function Profile() {
             <div className="cover-picture ">
               <img
                 src={
-                  user.coverPicture ||
-                  PublicFolder + "PersonNoAvatar/default-cover.png"
+                  user.coverPicture
+                    ? PublicFolder + user.coverPicture
+                    : PublicFolder + "PersonNoAvatar/default-cover.png"
                 }
                 className="h-13 w-full object-cover"
                 alt=""
@@ -52,9 +53,11 @@ function Profile() {
               <div className="profile-picture flex flex-col justify-center items-center gap-5 -mt-11 ">
                 <img
                   src={
-                    user.profile || PublicFolder + "PersonNoAvatar/person-4.svg"
+                    user.profile
+                      ? PublicFolder + user.profile
+                      : PublicFolder + "PersonNoAvatar/person-4.svg"
                   }
-                  className="h-12 w-12 rounded-full border-4 border-white bg-gray-200 p-2"
+                  className="h-12 w-12 rounded-full border-4 border-white bg-gray-200"
                   alt=""
                 />
 
