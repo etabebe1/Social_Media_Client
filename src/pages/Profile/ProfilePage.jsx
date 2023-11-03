@@ -11,20 +11,21 @@ import "./ProfilePage.css";
 
 function Profile() {
   const [user, setUser] = useState({});
-  const parameter = useParams()
+  const { username } = useParams();
+  // console.log(user);
 
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
+    const PROFILE_URL = `http://localhost:8800/api/users?username=${username}`;
     /*// TODO: here PROFILE_URL end-point is used for test, ASA the login system established for the app, we gonna use CONTEXT API to get username || userID for our user//*/
-    const PROFILE_URL = `http://localhost:8800/api/users?username=${parameter}`;
 
     const fetchUser = async () => {
       const response = await axios.get(PROFILE_URL);
       setUser(response.data);
     };
     fetchUser();
-  }, []);
+  }, [username]);
 
   // Here we gonna apply/use the process.env for the <UserProfile></UserProfile> and <Right></Right> components respectively as the former contains ((profile)) and ((cover image)) && latter contains ((User-Friends)) rendered from ProfileRightBar--> function
 

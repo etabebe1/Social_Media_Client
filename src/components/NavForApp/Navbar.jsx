@@ -11,6 +11,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 function NavBar() {
+  const { user } = useContext(AuthContext);
+  // console.log(user)
+
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (

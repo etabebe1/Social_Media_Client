@@ -3,8 +3,6 @@ import { React, useRef } from "react";
 import Arrow from "./arrow2.png";
 import "./Signup.css";
 
-// import { AuthContext } from "../../context/AuthContext";
-// import LinearProgress from "@mui/material/LinearProgress";
 
 import axios from "axios";
 
