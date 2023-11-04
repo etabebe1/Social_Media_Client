@@ -12,7 +12,7 @@ import "./ProfilePage.css";
 function Profile() {
   const [user, setUser] = useState({});
   const { username } = useParams();
-  console.log(user.coverPicture);
+  // console.log(user.coverPicture);
 
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 

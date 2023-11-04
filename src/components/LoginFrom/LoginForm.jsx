@@ -59,7 +59,7 @@ function LoginForm() {
           {/* from here */}
 
           <form
-            className="dark:bg-blackMore flex justify-center items-center"
+            className="login_form dark:bg-blackMore flex justify-center items-center"
             onSubmit={handleLogin}
           >
             <div className="formItemAll flex flex-col gap-1  w-1/2">

@@ -25,7 +25,7 @@
   opacity: 0.7;
 }
 
-form {
+.login_form {
   border-radius: 15px;
   backdrop-filter: blur(10px);
   width: 50vw;
