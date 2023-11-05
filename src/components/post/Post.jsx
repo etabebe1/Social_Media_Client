@@ -18,10 +18,11 @@ function Post({ post }) {
   const { user: currentUser } = useContext(AuthContext);
 
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
-
+  
   // console.log(post.likes.includes(currentUser._id));
   // console.log(currentUser);
   // console.log(post)
+
 
   ///* updating the value of isLiked state based on the info in the post likes Array //*/
   // hence we're using useEffect hook to do that.
@@ -55,6 +56,7 @@ function Post({ post }) {
       setLikes(likes - 1);
     }
   };
+
 
   return (
     <div className="Post_Container my-8.6 px-3 py-4 mx-4 rounded-xl text-gray-900">
