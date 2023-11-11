@@ -8,8 +8,9 @@ import "./Feed.css";
 
 function Feeds({ username }) {
   const [posts, setPosts] = useState([]);
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   // console.log(user);
+  // console.log(posts)
 
   useEffect(() => {
     const PROFILE_URL = `http://localhost:8800/api/posts/profile/${username}`;
@@ -31,7 +32,8 @@ function Feeds({ username }) {
 
   return (
     <div className="feed-container">
-      <Share user={user}></Share>
+      {username === user.username ? <Share user={user}></Share> : ""}
+
       {posts.map((availablePost) => {
         return <Post key={availablePost._id} post={availablePost}></Post>;
       })}

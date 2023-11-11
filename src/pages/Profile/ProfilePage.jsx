@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+// cannot found dependency
 import { useParams } from "react-router";
 import axios from "axios";
 import NavBar from "../../components/NavForApp/Navbar";
@@ -10,24 +11,26 @@ import Right from "../../components/rightBar/RightSide";
 import "./ProfilePage.css";
 
 function Profile() {
-  const [user, setUser] = useState({});
   const { username } = useParams();
-  // console.log(user.coverPicture);
+  const [user, setUser] = useState({});
 
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
-    const PROFILE_URL = `http://localhost:8800/api/users?username=${username}`;
-    /*// TODO: here PROFILE_URL end-point is used for test, ASA the login system established for the app, we gonna use CONTEXT API to get username || userID for our user//*/
-
     const fetchUser = async () => {
-      const response = await axios.get(PROFILE_URL);
-      setUser(response.data);
+      try {
+        const response = await axios.get(
+          `http://localhost:8800/api/users?username=${username}`
+        );
+        setUser(response.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchUser();
   }, [username]);
 
-  // Here we gonna apply/use the process.env for the <UserProfile></UserProfile> and <Right></Right> components respectively as the former contains ((profile)) and ((cover image)) && latter contains ((User-Friends)) rendered from ProfileRightBar--> function
+  // Here we gonna apply/use the process.env for the <UserProfile></UserProfile> and <Right></Right> components respectively as the former contains ((profile)) and ((cover image)) && latter contains ((USER-Friends)) rendered from ProfileRightBar--> function
 
   return (
     <div className="effect_filter">
@@ -35,10 +38,6 @@ function Profile() {
       <div className="profile flex">
         <SideBar />
         <div className="profile-container">
-          {/*// TODO: UserProfile component will be rendered separately by passing the user={user} prop //*/}
-          {/*// Here we may or may not it will be in consideration to it's necessity //*/}
-
-          {/* <UserProfile user={user} /> */}
           <div className="profile-container-top ">
             <div className="cover-picture ">
               <img
@@ -71,7 +70,7 @@ function Profile() {
 
           <div className="profile-container-bottom flex">
             <Feeds username={user.username} />
-            <Right User={user} />
+            {Object.keys(user).length > 0 && <Right USER={user} />}
           </div>
         </div>
       </div>

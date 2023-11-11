@@ -1,16 +1,75 @@
-import { React, useState, useEffect } from "react";
-
-import birthGift from "./images/pink-gift-box-present-birthday-.jpg";
-import image from "./images/8.jpg";
-
-import OnlineUser from "../online_users/Onlineuser";
-import { ONLINE_USERS } from "../../MOCK_DATA_ONLINE";
-
+import { React, useState, useEffect, useContext } from "react";
 import "./RightSide.css";
 
-function RightSide({ User }) {
+import axios from "axios";
+import birthGift from "./images/pink-gift-box-present-birthday-.jpg";
+import image from "./images/8.jpg";
+import OnlineUser from "../online_users/Onlineuser";
+import { ONLINE_USERS } from "../../MOCK_DATA_ONLINE";
+import { AuthContext } from "../../context/AuthContext";
+import { Add } from "@mui/icons-material";
+import { Remove } from "@mui/icons-material";
+
+function RightSide({ USER }) {
+  const [friends, setFriends] = useState([]);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const { user: currentUser } = useContext(AuthContext);
+
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
-  // const [onlineFriends, setOnlineFriends] = useState({});
+
+  useEffect(() => {
+    if (USER) {
+      setIsFollowing(currentUser.following.includes(USER?._id));
+      console.log(currentUser.following.includes(USER?._id));
+    }
+  }, [USER, currentUser]);
+
+
+  useEffect(() => {
+    const fetchFriends = async () => {
+      if (USER) {
+        try {
+          const response = await axios.get(
+            `http://localhost:8800/api/users/friends/${USER._id}`
+          );
+          setFriends(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+
+    fetchFriends();
+  }, [USER]);
+
+
+  const handleFollow = async () => {
+    try {
+      if (isFollowing) {
+        const resp = await axios.put(
+          `http://localhost:8800/api/users/${USER._id}/unfollow`,
+          { userID: currentUser._id }
+        );
+
+        console.log(resp.data);
+
+        console.log(isFollowing);
+        console.log(`Now you unfollowed ${USER.username}`);
+      } else {
+        const resp = await axios.put(
+          `http://localhost:8800/api/users/${USER._id}/unfollow`,
+          { userID: currentUser._id }
+        );
+
+        console.log(resp.data);
+
+        console.log(isFollowing);
+        console.log(`Now you started following ${USER.username}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const HomeRightBar = () => {
     return (
@@ -52,93 +111,66 @@ function RightSide({ User }) {
     const [relationStatus, setRelationStatus] = useState("");
 
     useEffect(() => {
-      if (User.relation === 3) {
+      if (USER.relation === 3) {
         return setRelationStatus("Single");
-      } else if (User.relation === 2) {
+      } else if (USER.relation === 2) {
         return setRelationStatus("-");
-      } else if (User.relation === 1) {
+      } else if (USER.relation === 1) {
         return setRelationStatus("Married");
       }
     }, []);
 
     return (
       <>
-          <div className="user-info mb-7">
-            <h1 className="text-xl font-semibold mb-4">User Information</h1>
+        <div className="user-info">
+          {USER._id !== currentUser._id && (
+            <button
+              className="follow_unfollow-btn mt-6 mb-3"
+              onClick={handleFollow}
+            >
+              {isFollowing ? "Unfollow" : "Follow"}
+              {isFollowing ? <Remove /> : <Add />}
+            </button>
+          )}
+          <h1 className="text-xl font-semibold ">User Information</h1>
 
-            <div className="info-container ">
-              <h2 className="font-semibold text-gray-700">
-                City: <span className="font-light">{User.city}</span>
-              </h2>
-              <h2 className="font-semibold text-gray-700">
-                From: <span className="font-light">{User.from}</span>
-              </h2>
-              <h2 className="font-semibold text-gray-700">
-                Relationship:{" "}
-                <span className="font-light">{relationStatus}</span>
-              </h2>
-            </div>
+          <div className="info-container ">
+            <h2 className="font-semibold text-gray-700">
+              City: <span className="font-light">{USER.city}</span>
+            </h2>
+            <h2 className="font-semibold text-gray-700">
+              From: <span className="font-light">{USER.from}</span>
+            </h2>
+            <h2 className="font-semibold text-gray-700">
+              Relationship: <span className="font-light">{relationStatus}</span>
+            </h2>
           </div>
-          <div className="close-friends-container">
-            <h1 className="text-xl font-semibold mb-4">User Friends</h1>
+        </div>
+        <div className="close-friends-container">
+          <h1 className="text-xl font-semibold mb-4">User Friends</h1>
 
-            <ul className="flex flex-wrap gap-6 text-center">
-              <li>
-                <img
-                  src={`${PublicFolder}/posts/5.jpg`}
-                  className="w-11 h-11 object-cover rounded-lg "
-                  alt=""
-                />
-
-                <span className="username ">Ruth Befikadu</span>
-              </li>
-              <li>
-                <img
-                  src={`${PublicFolder}/posts/6.jpg`}
-                  className="w-11 h-11 object-cover rounded-lg "
-                  alt=""
-                />
-
-                <span className="username ">Elias Zeleke</span>
-              </li>
-              <li>
-                <img
-                  src={`${PublicFolder}/posts/8.jpg`}
-                  className="w-11 h-11 object-cover rounded-lg "
-                  alt=""
-                />
-
-                <span className="username ">Lidya Fekadu</span>
-              </li>
-              <li>
-                <img
-                  src={`${PublicFolder}/posts/9.jpg`}
-                  className="w-11 h-11 object-cover rounded-lg "
-                  alt=""
-                />
-
-                <span className="username ">David Habtish </span>
-              </li>
-              <li>
-                <img
-                  src={`${PublicFolder}/posts/10.jpg`}
-                  className="w-11 h-11 object-cover rounded-lg "
-                  alt=""
-                />
-
-                <span className="username ">Naol Fekadu</span>
-              </li>
-              <li>
-                <img
-                  src={`${PublicFolder}/posts/15.jpg`}
-                  className="w-11 h-11 object-cover rounded-lg "
-                  alt=""
-                />
-
-                <span className="username ">Jale Abeya</span>
-              </li>
-            </ul>
-          </div>
+          <ul className="flex flex-wrap gap-6 text-center">
+            {friends.length > 0 &&
+              friends.map((friend) => {
+                return (
+                  <a href={`/profile/${friend.username}`} key={friend._id}>
+                    <li>
+                      <img
+                        src={
+                          friend.profile
+                            ? `${PublicFolder}/` + friend.profile
+                            : PublicFolder + "PersonNoAvatar/person-4.svg"
+                        }
+                        className="w-11 h-11 object-cover rounded-lg "
+                        alt=""
+                      />
+                      <span className="username ">{friend.username}</span>
+                    </li>
+                  </a>
+                );
+              })}
+          </ul>
+        </div>
       </>
     );
   };
@@ -146,7 +178,7 @@ function RightSide({ User }) {
   return (
     <div className="right-container  p-6 text-gray-800">
       <div className="right-wrapper">
-        {User ? (
+        {USER ? (
           <ProfileRightBar></ProfileRightBar>
         ) : (
           <HomeRightBar></HomeRightBar>

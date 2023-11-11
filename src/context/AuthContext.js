@@ -11,6 +11,7 @@ import AuthReducer from "./AuthReducer";
 /*// TODO: here after the user has login, user data should be stored in LOCAL-STORAGE  //*/
 
 const INITIAL_STATE = {
+
   user: {
     _id: "65250b8fc436fa61becdc210",
     username: "Jeremiah A.",
@@ -30,7 +31,6 @@ const INITIAL_STATE = {
 //     _id: "652518ae1c2341b38a8a3770",
 //     username: "Naol",
 //     email: "naol@gmail.com",
-//     password: "$2b$10$SbEJm/bU1zbKiqiPjXfV0.DOYQE62z2IX8QYXP3MBTMqWue7ClDWy",
 //     profile: "",
 //     coverPicture: "",
 //     followers: ["6525196a1c2341b38a8a3776", "65250b8fc436fa61becdc210"],

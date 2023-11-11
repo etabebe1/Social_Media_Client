@@ -1,10 +1,10 @@
 import { React, useContext } from "react";
 
-
 import Home from "./pages/Home/HomePage";
 import Profile from "./pages/Profile/ProfilePage";
 import Login from "./pages/Login/LoginPage";
 import Signup from "./pages/Signup/Signup";
+import Messenger from "./pages/messenger/Messenger";
 
 // importing React Router form react-router-dom
 import {
@@ -30,6 +30,9 @@ function App() {
         </Route>
         <Route path="/Signup">
           {user ? <Redirect to="/" /> : <Signup></Signup>}
+        </Route>
+        <Route path="/messenger">
+          {!user ? <Redirect to="/" /> : <Messenger></Messenger>}
         </Route>
         <Route path="/profile/:username">
           <Profile></Profile>

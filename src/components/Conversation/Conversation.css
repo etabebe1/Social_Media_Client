@@ -1,0 +1,21 @@
+.chat-list > li {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-block: 5px;
+  padding-inline: 4px;
+  border-radius: 5px;
+}
+
+.chat-list > li:hover {
+    cursor: pointer;
+  background: rgb(239, 237, 237);
+  transition: all 0.3s ease-in;
+}
+
+.chat-list > li > img {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 100%;
+}
