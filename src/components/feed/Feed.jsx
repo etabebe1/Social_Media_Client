@@ -32,7 +32,11 @@ function Feeds({ username }) {
 
   return (
     <div className="feed-container">
-      {username === user.username ? <Share user={user}></Share> : ""}
+      {!username || username === user.username ? (
+        <Share user={user}></Share>
+      ) : (
+        ""
+      )}
 
       {posts.map((availablePost) => {
         return <Post key={availablePost._id} post={availablePost}></Post>;

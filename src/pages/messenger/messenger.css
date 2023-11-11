@@ -52,9 +52,8 @@ hr {
   display: flex;
   flex-direction: column;
   margin-block: 10px;
-  gap: 15px;
+  gap: 5px;
   border-radius: 15px;
-  /* border-top: none; */
 
   --tw-shadow: 0 0 10px 5px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px -15px -3px var(--tw-shadow-color),

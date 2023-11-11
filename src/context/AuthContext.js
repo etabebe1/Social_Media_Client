@@ -11,7 +11,6 @@ import AuthReducer from "./AuthReducer";
 /*// TODO: here after the user has login, user data should be stored in LOCAL-STORAGE  //*/
 
 const INITIAL_STATE = {
-
   user: {
     _id: "65250b8fc436fa61becdc210",
     username: "Jeremiah A.",
@@ -19,36 +18,13 @@ const INITIAL_STATE = {
     profile: "/profile/image.jpg",
     coverPicture: "",
     followers: ["652518ae1c2341b38a8a3770", "6525196a1c2341b38a8a3776"],
-    following: ["652518ae1c2341b38a8a3770", "6525196a1c2341b38a8a3776"],
+    following: ["652518ae1c2341b38a8a3770", "654beb0ab10172a6aa277f88"],
     isAdmin: true,
   },
   isFetching: false,
   error: false,
 };
-
-// const INITIAL_STATE = {
-//   user: {
-//     _id: "652518ae1c2341b38a8a3770",
-//     username: "Naol",
-//     email: "naol@gmail.com",
-//     profile: "",
-//     coverPicture: "",
-//     followers: ["6525196a1c2341b38a8a3776", "65250b8fc436fa61becdc210"],
-//     following: ["65250b8fc436fa61becdc210", "6525196a1c2341b38a8a3776"],
-//     isAdmin: true,
-//     createdAt: "2023-10-10T09:26:06.189Z",
-//     updatedAt: "2023-10-10T09:45:50.328Z",
-//     __v: 0,
-//     city: "Addis Ababa",
-//     description: "Trust me I know what I'm doing.",
-//     from: "Ethiopia",
-//     relation: 2,
-//   },
-
-//   isFetching: false,
-//   error: false,
-// };
-
+  
 export const AuthContext = createContext(INITIAL_STATE);
 
 export const AuthContextProvider = ({ children }) => {

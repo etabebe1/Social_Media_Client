@@ -12,18 +12,12 @@ import { Remove } from "@mui/icons-material";
 
 function RightSide({ USER }) {
   const [friends, setFriends] = useState([]);
-  const [isFollowing, setIsFollowing] = useState(false);
-  const { user: currentUser } = useContext(AuthContext);
+  const { user: currentUser, dispatch } = useContext(AuthContext);
+  const [isFollowing, setIsFollowing] = useState(
+    currentUser.following.includes(USER?._id)
+  );
 
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
-
-  useEffect(() => {
-    if (USER) {
-      setIsFollowing(currentUser.following.includes(USER?._id));
-      console.log(currentUser.following.includes(USER?._id));
-    }
-  }, [USER, currentUser]);
-
 
   useEffect(() => {
     const fetchFriends = async () => {
@@ -42,7 +36,6 @@ function RightSide({ USER }) {
     fetchFriends();
   }, [USER]);
 
-
   const handleFollow = async () => {
     try {
       if (isFollowing) {
@@ -50,62 +43,63 @@ function RightSide({ USER }) {
           `http://localhost:8800/api/users/${USER._id}/unfollow`,
           { userID: currentUser._id }
         );
+        dispatch({ type: "UNFOLLOW", payload: USER._id });
 
+        // TODO: check a response data after request
         console.log(resp.data);
-
         console.log(isFollowing);
         console.log(`Now you unfollowed ${USER.username}`);
       } else {
         const resp = await axios.put(
-          `http://localhost:8800/api/users/${USER._id}/unfollow`,
+          `http://localhost:8800/api/users/${USER._id}/follow`,
           { userID: currentUser._id }
         );
+        dispatch({ type: "FOLLOW", payload: USER._id });
 
+        // TODO: check a response data after request
         console.log(resp.data);
-
         console.log(isFollowing);
         console.log(`Now you started following ${USER.username}`);
       }
     } catch (error) {
       console.log(error);
     }
+    setIsFollowing(!isFollowing);
   };
 
-  const HomeRightBar = () => {
-    return (
-      <>
-        <div className="notification_container flex items-center ">
-          <img src={birthGift} className="w-9.7 " alt="" />
-          <div className="describe-notification">
-            <p className="font-extralight text-sm">
-              <span className="first-person font-semibold">Mikyas Amare</span>{" "}
-              and <span className="total-person font-semibold">5</span> other
-              friend have a birthday today.
-            </p>
-          </div>
+  const HomeRightBar = () => (
+    <>
+      <div className="notification_container flex items-center ">
+        <img src={birthGift} className="w-9.7 " alt="" />
+        <div className="describe-notification">
+          <p className="font-extralight text-sm">
+            <span className="first-person font-semibold">Mikyas Amare</span> and{" "}
+            <span className="total-person font-semibold">5</span> other friend
+            have a birthday today.
+          </p>
         </div>
-        <div className="image_container">
-          <img
-            src={image}
-            className=" w-15 h-13.5 object-cover rounded-xl my-6"
-            alt=""
-          />
-        </div>
-        <div className="online-friend-container">
-          <h3 className="font-semibold ">Online Friends</h3>
-          <hr className="border-white my-3" />
+      </div>
+      <div className="image_container">
+        <img
+          src={image}
+          className=" w-15 h-13.5 object-cover rounded-xl my-6"
+          alt=""
+        />
+      </div>
+      <div className="online-friend-container">
+        <h3 className="font-semibold ">Online Friends</h3>
+        <hr className="border-white my-3" />
 
-          <ul className="user_container">
-            {ONLINE_USERS.map((individual) => {
-              return (
-                <OnlineUser key={individual.id} user={individual}></OnlineUser>
-              );
-            })}
-          </ul>
-        </div>
-      </>
-    );
-  };
+        <ul className="user_container">
+          {ONLINE_USERS.map((individual) => {
+            return (
+              <OnlineUser key={individual.id} user={individual}></OnlineUser>
+            );
+          })}
+        </ul>
+      </div>
+    </>
+  );
 
   const ProfileRightBar = () => {
     const [relationStatus, setRelationStatus] = useState("");

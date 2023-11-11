@@ -6,6 +6,7 @@ import PhotoIcon from "@mui/icons-material/Photo";
 import LabelIcon from "@mui/icons-material/Label";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import { Cancel } from "@mui/icons-material";
 
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
@@ -91,7 +92,12 @@ function Share() {
       </div>
 
       <hr className="my-6 mx-7.5 border-gray-400" />
-
+      {file && (
+        <div className="img-preview-container">
+          <img src={URL.createObjectURL(file)} className="img-preview" alt="" />
+          <Cancel className="cancel" onClick={()=> setFile(null)} />
+        </div>
+      )}
       <form
         className="share_container flex justify-between items-center px-6 drop-shadow-md gap-2"
         onSubmit={fileSubmitHandler}
@@ -148,6 +154,3 @@ function Share() {
 }
 
 export default Share;
-
-
-

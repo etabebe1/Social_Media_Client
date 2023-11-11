@@ -1,43 +1,75 @@
-.profile-message-wrapper {
+.img_message-wrapper {
   display: flex;
   gap: 10px;
+background: burlywood;
 }
 
-.profile-message-wrapper > img {
-  width: 35px;
-  height: 35px;
+.img_message-wrapper > img {
+  width: 25px;
+  height: 25px;
   border-radius: 100%;
   cursor: pointer;
+  justify-content: center;
 }
+
+.img_message-wrapper > .message-container {
+  background: #d2d1d1;
+}
+.img_message-wrapper.own > .message-container {
+  background: blue;
+}
+.message-container .user-message {
+  font-size: 13px;
+}
+
+.time-ago {
+  display: flex;
+  text-align: flex-end;
+  font-size: 12px;
+}
+
+/* .profile-message-wrapper {
+  display: flex;
+} */
+
+/* 
+
+
+.message-container {
+  box-shadow: 1px 1px 3px gray;
+  background: rgb(179, 179, 179);
+}
+
 .message-container.own {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  background: rgb(79, 85, 197);
+  box-shadow: 1px 1px 3px gray;
+}
+
+.message-container.own .profile-message-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .message-container.own .profile-message-wrapper .user-message {
   max-width: 300px;
   color: white;
-  background: rgb(79, 85, 197);
   padding: 5px 10px;
-  border-radius: 0 10px 10px 10px;
-  font-size: 14px;
-  margin-block-start: 15px;
-  box-shadow: 1px 1px 10px gray;
+  border-radius: 10px;
+  font-size: 12px;
   cursor: pointer;
 }
 
 .profile-message-wrapper .user-message {
   max-width: 300px;
-  background: rgb(179, 179, 179);
   padding: 5px 10px;
-  border-radius: 0 10px 10px 10px;
-  font-size: 14px;
-  margin-block-start: 15px;
-  box-shadow: 1px 1px 10px gray;
+  border-radius: 10px;
+  font-size: 12px;
   cursor: pointer;
 }
 
 .time-ago {
   font-size: 12px;
-}
+} */
