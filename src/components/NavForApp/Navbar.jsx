@@ -68,12 +68,15 @@ function NavBar() {
                 1
               </div>
             </span>
-            <span className="text-gray-700 relative cursor-pointer hover:text-orange-500 duration-500">
+            <a
+              href="/messenger"
+              className="text-gray-700 relative cursor-pointer hover:text-orange-500 duration-500"
+            >
               <MessageIcon />
               <div className="w-4 h-4 bg-red-600 rounded-full absolute -translate-y-7.6 translate-x-3.8 flex justify-center items-center text-sm">
                 2
               </div>
-            </span>
+            </a>
             <span className="text-gray-700 relative cursor-pointer hover:text-orange-500 duration-500">
               <NotificationsIcon />
               <div className="w-4 h-4 bg-red-600 rounded-full absolute -translate-y-7.6 translate-x-3.8 flex justify-center items-center text-sm">

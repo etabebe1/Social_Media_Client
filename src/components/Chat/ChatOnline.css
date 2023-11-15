@@ -9,6 +9,9 @@
   height: 35px;
   border-radius: 100%;
 }
+.online-user-wrapper .username {
+  font-size: 15px;
+}
 
 .img_indicator .online-indicator {
     position: absolute;

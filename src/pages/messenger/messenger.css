@@ -1,7 +1,7 @@
 .chat-container {
   height: calc(100vh - 50px);
   display: flex;
-  padding-block-end: 25px;
+  background: #efefef;
 }
 
 .search-friend {
@@ -22,14 +22,15 @@ hr {
 }
 .chat-box {
   flex: 5.5;
-  padding-block-end: 10px;
+  background: #f5f5f5;
 }
 .online-user {
   flex: 3.5;
+  display: flex;
+  /* justify-content: flex-start; */
 }
 
 .user-container,
-.chat-box,
 .online-user {
   padding-inline: 15px;
   padding-block-start: 25px;
@@ -48,34 +49,31 @@ hr {
 .chat-box-wrapper {
   position: sticky;
   overflow-y: scroll;
-  height: 70vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
-  margin-block: 10px;
-  gap: 5px;
-  border-radius: 15px;
+  margin-block-end: 10px;
+  gap: 7px;
+  padding: 10px;
 
   --tw-shadow: 0 0 10px 5px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px -15px -3px var(--tw-shadow-color),
     0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-
-  /* background-color: turquoise; */
-  padding: 10px;
 }
+
 .chat-box-textarea {
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .chat-box-textarea .message-input {
-  width: 80%;
+  width: 89%;
   height: 10vh;
   border: 1px solid gray;
-  /* background: blue; */
   font-size: 14px;
   padding: 5px;
   border-radius: 3px;
@@ -87,9 +85,9 @@ hr {
 
 .chat-box-textarea .send-btn {
   position: relative;
-  background: teal;
+  background: #7a7a7a;
   color: white;
-  width: 15%;
+  width: 10%;
   padding: 5px 0;
   border-radius: 4px;
   transition: all 0.3s ease-in-out;
@@ -97,15 +95,20 @@ hr {
 }
 
 .chat-box-textarea .send-btn:hover {
-  background-color: rgb(0, 103, 103);
+  background-color: #3a3a3a;
+}
+.online-user span {
+  font-size: medium;
 }
 
 .online-user > .online-user-wrapper {
   position: sticky;
   overflow-y: scroll;
   height: calc(100vh - 80px);
+  width: 100%;
 
   display: flex;
+  justify-content: flex-start;
   flex-direction: column;
   gap: 15px;
 }

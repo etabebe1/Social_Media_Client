@@ -14,7 +14,7 @@ function RightSide({ USER }) {
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
   const [isFollowing, setIsFollowing] = useState(
-    currentUser.following.includes(USER?._id)
+    currentUser.user.following.includes(USER?._id)
   );
 
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -39,27 +39,27 @@ function RightSide({ USER }) {
   const handleFollow = async () => {
     try {
       if (isFollowing) {
-        const resp = await axios.put(
+        await axios.put(
           `http://localhost:8800/api/users/${USER._id}/unfollow`,
           { userID: currentUser._id }
         );
         dispatch({ type: "UNFOLLOW", payload: USER._id });
 
         // TODO: check a response data after request
-        console.log(resp.data);
+        /*     console.log(resp.data);
         console.log(isFollowing);
-        console.log(`Now you unfollowed ${USER.username}`);
+        console.log(`Now you unfollowed ${USER.username}`); */
       } else {
-        const resp = await axios.put(
-          `http://localhost:8800/api/users/${USER._id}/follow`,
-          { userID: currentUser._id }
-        );
+        await axios.put(`http://localhost:8800/api/users/${USER._id}/follow`, {
+          userID: currentUser._id,
+        });
         dispatch({ type: "FOLLOW", payload: USER._id });
 
         // TODO: check a response data after request
-        console.log(resp.data);
+        /*         console.log(resp.data);
         console.log(isFollowing);
         console.log(`Now you started following ${USER.username}`);
+ */
       }
     } catch (error) {
       console.log(error);

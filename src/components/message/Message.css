@@ -1,38 +1,38 @@
 .img_message-wrapper {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   gap: 10px;
 }
+
+.img_message-wrapper.own {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
 
 .img_message-wrapper > img {
   width: 25px;
   height: 25px;
   border-radius: 100%;
   cursor: pointer;
-  justify-content: center;
 }
 
 .img_message-wrapper > .message-container {
   background: #d2d1d15f;
-  max-width: 90%;
-  padding-inline: 5px;
-  border-radius: 5px 5px 5px 0;
-}
- .message-container::before {
-  position: relative;
-  bottom: -4px;
-  left: 30px;
-  content: "";
-  width: 10px;
-  height: 10px;
-  background: red;
+  max-width: 80%;
+  padding: 3px 10px;
+  border-radius: 10px 10px 10px 0;
 }
 
+/* TODO: customize quote for each message in chat section */
+
+
 .img_message-wrapper.own > .message-container {
-  background: blue;
-  max-width: 90%;
-  padding-inline: 5px;
-  border-radius: 5px 5px 5px 0;
+  background: rgb(69, 69, 255);
+  max-width: 80%;
+  padding: 3px 10px;
+  border-radius: 10px 10px 0 10px;
 }
 .message-container .user-message {
   font-size: 13px;
@@ -40,52 +40,6 @@
 
 .time-ago {
   display: flex;
-  text-align: flex-end;
+  justify-content: flex-end;
   font-size: 12px;
 }
-
-/* .profile-message-wrapper {
-  display: flex;
-} */
-
-/* 
-
-
-.message-container {
-  box-shadow: 1px 1px 3px gray;
-  background: rgb(179, 179, 179);
-}
-
-.message-container.own {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  background: rgb(79, 85, 197);
-  box-shadow: 1px 1px 3px gray;
-}
-
-.message-container.own .profile-message-wrapper {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-.message-container.own .profile-message-wrapper .user-message {
-  max-width: 300px;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 10px;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.profile-message-wrapper .user-message {
-  max-width: 300px;
-  padding: 5px 10px;
-  border-radius: 10px;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.time-ago {
-  font-size: 12px;
-} */

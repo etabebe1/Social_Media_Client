@@ -1,15 +1,16 @@
 .chat-list > li {
   display: flex;
   align-items: center;
-  gap: 20px;
+  width: 100%;
+  gap: 15px;
   padding-block: 5px;
-  padding-inline: 4px;
+  padding-inline: 10px;
   border-radius: 5px;
 }
 
 .chat-list > li:hover {
-    cursor: pointer;
-  background: rgb(239, 237, 237);
+  cursor: pointer;
+  background: white;
   transition: all 0.3s ease-in;
 }
 
@@ -18,4 +19,15 @@
   height: 45px;
   object-fit: cover;
   border-radius: 100%;
+}
+.username_message {
+  display: flex;
+  flex-direction: column;
+}
+.username_message > .username {
+  font-size: 14px;
+  font-weight: 500;
+}
+.username_message > .last-message {
+  font-size: 12px;
 }
