@@ -14,7 +14,7 @@ function RightSide({ USER }) {
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
   const [isFollowing, setIsFollowing] = useState(
-    currentUser.user.following.includes(USER?._id)
+    currentUser.following.includes(USER?._id)
   );
 
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;

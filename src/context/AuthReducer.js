@@ -18,6 +18,7 @@ const AuthReducer = (state, action) => {
         isFetching: false,
         error: action.payload,
       };
+
     // ...state --> copies all the initial state of a user
     // INITIAL_STATE: { } --> is a user object stored in the localStorage
     // INITIAL_STATE: { } --> it is also initialized as the user provides credentials through Login_Form

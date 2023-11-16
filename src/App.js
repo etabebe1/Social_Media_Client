@@ -23,19 +23,15 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          {user ? <Home></Home> : <Login></Login>}
+          {user ? <Home /> : <Login />}
         </Route>
-        <Route path="/login">
-          {user ? <Redirect to="/" /> : <Login></Login>}
-        </Route>
-        <Route path="/Signup">
-          {user ? <Redirect to="/" /> : <Signup></Signup>}
-        </Route>
+        <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
+        <Route path="/signup">{user ? <Redirect to="/" /> : <Signup />}</Route>
         <Route path="/messenger">
-          {!user ? <Redirect to="/" /> : <Messenger></Messenger>}
+          {!user ? <Redirect to="/" /> : <Messenger />}
         </Route>
         <Route path="/profile/:username">
-          <Profile></Profile>
+          <Profile />
         </Route>
       </Switch>
     </Router>

@@ -6,6 +6,8 @@ import Message from "../../components/message/Message";
 import ChatOnline from "../../components/Chat/ChatOnline";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import { io } from "socket.io-client";
+import { useForkRef } from "@mui/material";
 
 function Messenger() {
   const { user } = useContext(AuthContext);
@@ -14,6 +16,7 @@ function Messenger() {
   const [messages, setMessages] = useState([]);
   const [messageValue, setMessageValue] = useState("");
   const scrollRef = useRef();
+const socket = useRef("ws://localhost:8900")
   // const messageValue = useRef();
 
   // console.log(user);
@@ -25,7 +28,11 @@ function Messenger() {
   //   console.log(messages);
   // }
 
-  // fetching conversations
+  // ::::::::::socket connection:::::::::: //
+
+ 
+
+  // :::::::::::fetching conversations::::::::::: //
   useEffect(() => {
     const fetchConversation = async () => {
       try {
