@@ -14,7 +14,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 function LoginPage() {
   const email = useRef();
   const password = useRef();
-  const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const { isFetching, dispatch } = useContext(AuthContext);
 
   const handleLogin = (evt) => {
     evt.preventDefault();
@@ -24,8 +24,6 @@ function LoginPage() {
       dispatch
     );
   };
-
-  console.log(user, isFetching, error, dispatch);
 
   return (
     <div>

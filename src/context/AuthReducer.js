@@ -16,7 +16,7 @@ const AuthReducer = (state, action) => {
       return {
         user: null,
         isFetching: false,
-        error: action.payload,
+        error: true,
       };
 
     // ...state --> copies all the initial state of a user
