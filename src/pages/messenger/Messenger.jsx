@@ -15,13 +15,12 @@ function Messenger() {
   const [messages, setMessages] = useState([]);
   const [messageValue, setMessageValue] = useState("");
   const scrollRef = useRef();
-  const socket = useRef(io("ws://localhost:8900"));
-
-  console.log(user);
+  const socket = useRef()
 
   //* ::::::::::socket connection:::::::::: *//
-  useEffect(() => {}, [user]);
 
+
+  
   //* :::::::::::fetching conversations::::::::::: *//
   useEffect(() => {
     const fetchConversation = async () => {
