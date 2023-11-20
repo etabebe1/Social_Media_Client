@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Message.css";
 import axios from "axios";
-// import { format } from "timeago.js";
+import { format } from "timeago.js";
 
 function Message({ own, message }) {
   const [user, setUser] = useState({});
@@ -39,7 +39,7 @@ function Message({ own, message }) {
         )}
         <div className="message-container">
           <p className="user-message">{message.text}</p>
-          <span className="time-ago">{message.createdAt}</span>
+          <span className="time-ago">{format(message.createdAt)}</span>
         </div>
       </div>
     </>

@@ -4,18 +4,21 @@ import "./RightSide.css";
 import axios from "axios";
 import birthGift from "./images/pink-gift-box-present-birthday-.jpg";
 import image from "./images/8.jpg";
-import OnlineUser from "../online_users/Onlineuser";
-import { ONLINE_USERS } from "../../MOCK_DATA_ONLINE";
+import ChatOnline from "../../components/Chat/Online-user";
+// import { ONLINE_USERS } from "../../MOCK_DATA_ONLINE";
 import { AuthContext } from "../../context/AuthContext";
 import { Add } from "@mui/icons-material";
 import { Remove } from "@mui/icons-material";
 
+//
 function RightSide({ USER }) {
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
   const [isFollowing, setIsFollowing] = useState(
     currentUser.following.includes(USER?._id)
   );
+
+  // console.log(ONLINE_USERS);
 
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -91,11 +94,7 @@ function RightSide({ USER }) {
         <hr className="border-white my-3" />
 
         <ul className="user_container">
-          {ONLINE_USERS.map((individual) => {
-            return (
-              <OnlineUser key={individual.id} user={individual}></OnlineUser>
-            );
-          })}
+          <ChatOnline></ChatOnline>
         </ul>
       </div>
     </>

@@ -1,26 +1,55 @@
-import { useEffect, useContext, useState, useRef } from "react";
+import React, { useEffect, useContext, useState, useRef } from "react";
 import "./messenger.css";
 import NavBar from "../../components/NavForApp/Navbar";
 import Conversation from "../../components/Conversation/Conversation";
 import Message from "../../components/message/Message";
-import ChatOnline from "../../components/Chat/ChatOnline";
+import ChatOnline from "../../components/Chat/Online-user";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { io } from "socket.io-client";
 
 function Messenger() {
-  const { user } = useContext(AuthContext);
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const [conversation, setConversation] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
+  const [arrivedMessage, setArrivedMessage] = useState(null);
   const [messageValue, setMessageValue] = useState("");
   const scrollRef = useRef();
-  const socket = useRef()
+  const { user } = useContext(AuthContext);
+  const socket = useRef();
+
+  // LOGS: here
+  // onlineUsers.length > 0 && console.log(onlineUsers);
 
   //* ::::::::::socket connection:::::::::: *//
+  useEffect(() => {
+    socket.current = io("ws://localhost:8900");
+    socket.current.on("getMessage", (data) => {
+      setArrivedMessage({
+        sender: data.senderID,
+        text: data.text,
+        createdAt: Date.now(),
+      });
+    });
+  }, []);
 
+  useEffect(() => {
+    socket.current.emit("addUser", user._id);
+    socket.current.on("getUsers", (users) => {
+      setOnlineUsers(users);
+    });
+  }, [user]);
 
-  
+  useEffect(() => {
+    if (
+      arrivedMessage &&
+      currentChat?.members.includes(arrivedMessage.sender)
+    ) {
+      setMessages((prev) => [...prev, arrivedMessage]);
+    }
+  }, [arrivedMessage, currentChat]);
+
   //* :::::::::::fetching conversations::::::::::: *//
   useEffect(() => {
     const fetchConversation = async () => {
@@ -67,6 +96,20 @@ function Messenger() {
       senderID: user._id,
       text: messageValue,
     };
+
+    const receiverID = currentChat.members.find(
+      (member) => member !== user._id
+    );
+
+    // FIXME: instant message not working
+    // DONE
+    // socket sending message info for client side
+
+    socket.current.emit("sendMessage", {
+      senderID: user._id,
+      receiverID,
+      text: messageValue,
+    });
 
     try {
       const response = await axios.post(
@@ -157,22 +200,7 @@ function Messenger() {
             Online Users
           </span>
           <div className="online-user-wrapper">
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
-            <ChatOnline></ChatOnline>
+            {onlineUsers.length && <ChatOnline onlineUsers={onlineUsers} currentUserID={user._id} setCurrentChat={setCurrentChat}></ChatOnline>}
           </div>
         </div>
       </div>
