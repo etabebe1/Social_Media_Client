@@ -110,5 +110,5 @@ hr {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  gap: 15px;
+  /* gap: 5px; */
 }

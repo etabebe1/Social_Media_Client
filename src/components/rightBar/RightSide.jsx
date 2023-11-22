@@ -18,7 +18,7 @@ function RightSide({ USER }) {
     currentUser.following.includes(USER?._id)
   );
 
-  // console.log(ONLINE_USERS);
+  console.log(USER);
 
   const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -59,10 +59,9 @@ function RightSide({ USER }) {
         dispatch({ type: "FOLLOW", payload: USER._id });
 
         // TODO: check a response data after request
-        /*         console.log(resp.data);
+        // console.log(resp.data);
         console.log(isFollowing);
         console.log(`Now you started following ${USER.username}`);
- */
       }
     } catch (error) {
       console.log(error);

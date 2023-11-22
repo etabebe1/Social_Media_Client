@@ -39,7 +39,7 @@ function Message({ own, message }) {
         )}
         <div className="message-container">
           <p className="user-message">{message.text}</p>
-          <span className="time-ago">{format(message.createdAt)}</span>
+          <span className="time-ago">{message.createdAt}</span>
         </div>
       </div>
     </>
